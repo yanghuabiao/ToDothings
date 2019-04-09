@@ -50,7 +50,8 @@
     content.body = [NSString localizedUserNotificationStringForKey:todo.content arguments:nil];
     content.sound = [UNNotificationSound defaultSound];
     
-    NSDateComponents *components = [self componentsWithDateStr:todo.startTime];
+//    NSDateComponents *components = [self componentsWithDateStr:todo.startTime];
+    NSDateComponents *components = [self getDateComponentsWithTimeStamp:todo.startTime];
     UNCalendarNotificationTrigger  *dayTrigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"%@", todo.bg_id]
                                                                           content:content trigger:dayTrigger];
@@ -68,12 +69,26 @@
     [center removePendingNotificationRequestsWithIdentifiers:@[[NSString stringWithFormat:@"%@", todo.bg_id]]];
 }
 
-- (NSDateComponents *)componentsWithDateStr:(NSString *)dateStr {
+//- (NSDateComponents *)componentsWithDateStr:(NSString *)dateStr {
+//
+//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSDate *date=[formatter dateFromString:dateStr];
+//    NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:date];
+//    return components;
+//}
+
+- (NSDateComponents *)getDateComponentsWithTimeStamp:(NSString *)timeStamp{
     
+    NSTimeInterval time = 0;
+    if (timeStamp.length == 10) {
+        time = [timeStamp doubleValue];
+    }else {
+        time = [timeStamp doubleValue]/1000;
+    }
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date=[formatter dateFromString:dateStr];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:date];
     return components;
 }
