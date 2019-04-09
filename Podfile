@@ -9,4 +9,5 @@ pod 'BGFMDB'
 pod 'UITextView+Placeholder'
 pod 'MFHUDManager'
 pod 'QMUIKit',:inhibit_warnings => true
+pod 'JPush'
 end

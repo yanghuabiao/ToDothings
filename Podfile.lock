@@ -5,6 +5,9 @@ PODS:
   - BGFMDB/BG (2.0.13):
     - BGFMDB/FMDB
   - BGFMDB/FMDB (2.0.13)
+  - JCore (1.2.6)
+  - JPush (3.1.2):
+    - JCore (~> 1.2.6)
   - Masonry (1.1.0)
   - MFHUDManager (0.1.5)
   - QMUIKit (3.1.2):
@@ -277,6 +280,7 @@ PODS:
 
 DEPENDENCIES:
   - BGFMDB
+  - JPush
   - Masonry
   - MFHUDManager
   - QMUIKit
@@ -285,6 +289,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BGFMDB
+    - JCore
+    - JPush
     - Masonry
     - MFHUDManager
     - QMUIKit
@@ -292,11 +298,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
+  JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
+  JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MFHUDManager: 7b359671b0042d94cce27e94d3d3bca2a3f0f39e
   QMUIKit: 765333b31bb25a973f2ea11e0a67fca727ef29a7
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 0fa67108c64f2066925c8250110c46091c01a488
+PODFILE CHECKSUM: 4368a59a8b06b5a827afe8468bea410a6c8e8d47
 
 COCOAPODS: 1.6.1
