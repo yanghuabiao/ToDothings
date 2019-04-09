@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ToDoMainModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 展示view */
 -(void)show;
+- (void)showWithModel:(ToDoMainModel *)model;
 -(void)dismissAndRemove;
 
 

@@ -14,8 +14,11 @@
 #import "UIView+ZDD.h"
 #import <UITextView+Placeholder/UITextView+Placeholder.h>
 #import <BRPickerView.h>
+#import "GODDBHelper.h"
+
+
 #define whiteBgvWidth ScreenWidth - 40
-#define whiteBgvHeight ScreenHeight - 100
+#define whiteBgvHeight 500
 
 @interface ToDoEdtitView ()
 
@@ -34,6 +37,8 @@
 @property (nonatomic, strong) UIView *bgWhiteView;
 @property (nonatomic, strong) UIButton *masking;
 
+@property (nonatomic, strong) ToDoMainModel *model;
+
 @end
 
 
@@ -44,6 +49,11 @@
         [self setupUI];
     }
     return self;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.contentTV resignFirstResponder];
+    [self.titleTf resignFirstResponder];
 }
 
 - (void)setupUI {
@@ -77,7 +87,7 @@
         make.left.mas_equalTo(25);
         make.right.mas_equalTo(-25);
         make.top.mas_equalTo(self.lineView_first.mas_bottom).mas_equalTo(10);
-        make.bottom.mas_equalTo(-210);
+        make.height.mas_equalTo(200);
     }];
     
     [self.bgWhiteView addSubview:self.notiLb];
@@ -90,39 +100,46 @@
     [self.bgWhiteView addSubview:self.startTimeLb];
     [self.startTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
-        make.width.mas_equalTo(120);
+        make.width.mas_equalTo(100);
         make.top.mas_equalTo(self.notiLb.mas_bottom).mas_equalTo(15);
     }];
     
     [self.bgWhiteView addSubview:self.endTimeLb];
     [self.endTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
-        make.width.mas_equalTo(120);
+        make.width.mas_equalTo(100);
         make.top.mas_equalTo(self.startTimeLb.mas_bottom).mas_equalTo(15);
     }];
     
     [self.bgWhiteView addSubview:self.firstTimeLb];
     [self.firstTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.startTimeLb.mas_right).mas_equalTo(50);
+        make.left.mas_equalTo(self.startTimeLb.mas_right);
         make.centerY.mas_equalTo(self.startTimeLb);
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(25);
+
     }];
     
     [self.bgWhiteView addSubview:self.secondTimeLb];
     [self.secondTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.endTimeLb.mas_right).mas_equalTo(50);
+        make.left.mas_equalTo(self.endTimeLb.mas_right);
         make.centerY.mas_equalTo(self.endTimeLb);
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(25);
     }];
     
     [self.bgWhiteView addSubview:self.cancelBtn];
     [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(25);
-        make.bottom.mas_equalTo(-15);
+        make.left.mas_equalTo(50);
+        make.width.height.mas_equalTo(50);
+        make.top.mas_equalTo(self.endTimeLb.mas_bottom).mas_equalTo(60);
     }];
     
     [self.bgWhiteView addSubview:self.certainBtn];
     [self.certainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-25);
-        make.bottom.mas_equalTo(-15);
+        make.right.mas_equalTo(-50);
+        make.width.height.mas_equalTo(50);
+        make.top.mas_equalTo(self.endTimeLb.mas_bottom).mas_equalTo(60);
     }];
     
 }
@@ -136,24 +153,82 @@
     }
     [UIView animateWithDuration:0.25f animations:^{
         self.masking.alpha = 0.5;
-        self.bgWhiteView.frame = CGRectMake(20, 50, whiteBgvWidth, whiteBgvHeight);
+        self.bgWhiteView.frame = CGRectMake(20, (ScreenHeight - whiteBgvHeight)/2.0, whiteBgvWidth, whiteBgvHeight);
     }];
     [self.titleTf becomeFirstResponder];
     
-    self.firstTimeLb.text = [ToDoTool getCurrentTimestamp];
-    self.secondTimeLb.text = [ToDoTool getCurrentTimestamp];
-
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"YYYY-MM-dd HH:mm"];
+    if (self.model) {
+        self.titleTf.text = self.model.title;
+        self.contentTV.text = self.model.content;
+        self.firstTimeLb.text = self.model.startTime;
+        self.secondTimeLb.text = self.model.endTime;
+    }else {
+        self.model = [[ToDoMainModel alloc] init];
+        self.model.type = ToDoThingsTypeToDo;
+        self.firstTimeLb.text = [format stringFromDate:[NSDate br_setHour:0 minute:5]];
+        self.secondTimeLb.text = [format stringFromDate:[NSDate br_setHour:0 minute:10]];
+    }
 }
 
+- (void)showWithModel:(ToDoMainModel *)model {
+    self.model = model;
+    [self show];
+}
+
+- (void)clickMasking {
+    [self.contentTV resignFirstResponder];
+    [self.titleTf resignFirstResponder];
+}
+
+- (void)clickCancenBtn {
+    [self dismissAndRemove];
+}
+
+- (void)clickCertainBtn {
+    
+    self.model.title = self.titleTf.text;
+    self.model.content = self.contentTV.text;
+    self.model.startTime = self.firstTimeLb.text;
+    self.model.endTime = self.secondTimeLb.text;
+    [[GODDBHelper sharedHelper] god_saveOrUpdate:self.model];
+    [self dismissAndRemove];
+}
 
 -(void)dismissAndRemove {
+    
+    self.model = nil;
+    
     [UIView animateWithDuration:0.25f animations:^{
         self.masking.alpha = 0.0f;
-        self.bgWhiteView.frame = CGRectMake(20, ScreenHeight, whiteBgvWidth, whiteBgvHeight + SafeAreaBottomHeight);
+        self.bgWhiteView.frame = CGRectMake(20, ScreenHeight, whiteBgvWidth, whiteBgvHeight);
     } completion:^(BOOL finished) {
         if (finished) {
             [self removeFromSuperview];
         }
+    }];
+}
+
+
+- (void)clickStartTime {
+    __weak typeof(self)weakSelf = self;
+    NSDate *minDate = [NSDate date];
+    NSDate *maxDate = [NSDate dateWithTimeIntervalSinceNow:10 * 365 * 24 * 3600];
+    [BRDatePickerView showDatePickerWithTitle:@"开始时间" dateType:BRDatePickerModeYMDHM defaultSelValue:@"" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+        weakSelf.firstTimeLb.text = selectValue;
+    } cancelBlock:^{
+    }];
+    
+}
+
+- (void)clickEndTime {
+    __weak typeof(self)weakSelf = self;
+    NSDate *minDate = [NSDate date];
+    NSDate *maxDate = [NSDate dateWithTimeIntervalSinceNow:10 * 365 * 24 * 3600];
+    [BRDatePickerView showDatePickerWithTitle:@"开始时间" dateType:BRDatePickerModeYMDHM defaultSelValue:@"" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
+        weakSelf.secondTimeLb.text = selectValue;
+    } cancelBlock:^{
     }];
 }
 
@@ -179,7 +254,7 @@
     if (!_endTimeLb) {
         _endTimeLb = [[UILabel alloc] init];
         _endTimeLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-        _endTimeLb.text = @"开始时间";
+        _endTimeLb.text = @"完成时间";
     }
     return _endTimeLb;
 }
@@ -192,7 +267,10 @@
         _firstTimeLb.layer.cornerRadius = 4;
         _firstTimeLb.layer.masksToBounds = YES;
         _firstTimeLb.layer.borderWidth = 1.0f;
+        _firstTimeLb.textAlignment = NSTextAlignmentCenter;
         _firstTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
+        _firstTimeLb.userInteractionEnabled = YES;
+        [_firstTimeLb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickStartTime)]];
     }
     return _firstTimeLb;
 }
@@ -201,11 +279,14 @@
     if (!_secondTimeLb) {
         _secondTimeLb = [[UILabel alloc] init];
         _secondTimeLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
-        _firstTimeLb.textColor = [UIColor blackColor];
+        _secondTimeLb.textColor = [UIColor blackColor];
         _secondTimeLb.layer.cornerRadius = 4;
         _secondTimeLb.layer.masksToBounds = YES;
         _secondTimeLb.layer.borderWidth = 1.0f;
         _secondTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
+        _secondTimeLb.textAlignment = NSTextAlignmentCenter;
+        _secondTimeLb.userInteractionEnabled = YES;
+        [_secondTimeLb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEndTime)]];
     }
     return _secondTimeLb;
 }
@@ -253,7 +334,7 @@
 -(UIButton *)masking {
     if (!_masking) {
         _masking = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_masking addTarget:self action:@selector(dismissAndRemove) forControlEvents:UIControlEventTouchUpInside];
+        [_masking addTarget:self action:@selector(clickMasking) forControlEvents:UIControlEventTouchUpInside];
         [_masking setBackgroundColor:[UIColor blackColor]];
         [_masking setAlpha:0.0f];
     }

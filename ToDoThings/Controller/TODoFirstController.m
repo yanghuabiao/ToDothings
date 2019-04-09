@@ -11,13 +11,14 @@
 #import "GODDBHelper.h"
 #import <Masonry.h>
 #import "ToDoEdtitView.h"
-
+#import "GODDefine.h"
 
 @interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) ToDoEdtitView *editView;
+@property (nonatomic, strong) UIButton *writeBtn;
 
 @end
 
@@ -66,10 +67,21 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    
+    [self.view addSubview:self.writeBtn];
+    [self.writeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(60);
+        make.right.mas_equalTo(-20.0f);
+        make.bottom.mas_equalTo(-(SafeAreaBottomHeight + 60.0f));
+    }];
+}
+
+- (void)clickwriteBtn {
+    [self.editView show];
 }
 
 - (void)clickEditWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
-    [self.editView show];
+    [self.editView showWithModel:model];
 }
 //点击开始
 - (void)clickStartWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
@@ -137,6 +149,22 @@
         _editView = [[ToDoEdtitView alloc] init];
     }
     return _editView;
+}
+
+-(UIButton *)writeBtn {
+    if (!_writeBtn) {
+        _writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _writeBtn.backgroundColor = [UIColor whiteColor];
+        _writeBtn.layer.cornerRadius = 30;
+        _writeBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+        _writeBtn.layer.shadowOffset = CGSizeMake(.0f, 1.0f);
+        _writeBtn.layer.shadowOpacity = .12f;
+        _writeBtn.layer.shadowRadius = 4.0f;
+        [_writeBtn setImage:[UIImage imageNamed:@"btn_postings"] forState:UIControlStateNormal];
+        [_writeBtn addTarget:self action:@selector(clickwriteBtn) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _writeBtn;
 }
 
 @end
