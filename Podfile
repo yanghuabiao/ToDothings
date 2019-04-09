@@ -7,4 +7,6 @@ pod 'Masonry'
 pod 'BGFMDB'
 #pod 'WSDatePickerView', '~> 1.0'
 pod 'UITextView+Placeholder'
+pod 'MFHUDManager'
+pod 'QMUIKit',:inhibit_warnings => true
 end

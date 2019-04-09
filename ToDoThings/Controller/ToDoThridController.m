@@ -10,6 +10,8 @@
 #import "ToFirstDoListCell.h"
 #import "GODDBHelper.h"
 #import <Masonry.h>
+#import "GODSettingViewController.h"
+
 @interface ToDoThridController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -100,5 +102,9 @@
     return _dataArr;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[GODSettingViewController new]];
+    [self presentViewController:navi animated:YES completion:nil];
+}
 
 @end

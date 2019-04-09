@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<ToDoMainModel *> *)god_queryWithType:(ToDoThingsType)type;
 //根据主键删除模型
 - (BOOL)god_delete:(NSNumber *)pk;
+//清空数据库
+- (void)god_clear;
 @end
 
 NS_ASSUME_NONNULL_END
