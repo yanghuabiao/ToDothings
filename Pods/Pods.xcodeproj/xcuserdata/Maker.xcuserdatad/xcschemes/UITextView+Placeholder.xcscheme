@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DEC9847FF7DA50A19D396E4BCCB6C28"
-               BuildableName = "libPods-ToDoThings.a"
-               BlueprintName = "Pods-ToDoThings"
+               BlueprintIdentifier = "F471E8AA928082F9692D25F59B4859D2"
+               BuildableName = "libUITextView+Placeholder.a"
+               BlueprintName = "UITextView+Placeholder"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

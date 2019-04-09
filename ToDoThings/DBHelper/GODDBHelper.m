@@ -24,9 +24,16 @@
     return helper;
 }
 
+- (void)sendNoti {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadList" object:nil];
+    });
+}
+
 - (BOOL)god_saveOrUpdate:(ToDoMainModel *)todo {
     [self removeLocalNoti:todo];
     [self addLocalNoti:todo];
+    [self sendNoti];
     return [todo bg_saveOrUpdate];
 }
 
@@ -39,6 +46,7 @@
     NSString* where = [NSString stringWithFormat:@"where %@=%@",bg_sqlKey(@"bg_id"),bg_sqlValue(pk)];
     ToDoMainModel *todo = [ToDoMainModel bg_find:@"ToDo" where:where].firstObject;
     [self removeLocalNoti:todo];
+    [self sendNoti];
     return [ToDoMainModel bg_delete:@"ToDo" where:where];
 }
 

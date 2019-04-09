@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DEC9847FF7DA50A19D396E4BCCB6C28"
-               BuildableName = "libPods-ToDoThings.a"
-               BlueprintName = "Pods-ToDoThings"
+               BlueprintIdentifier = "5BF5D961C8A69DDF8E23B63F98EB679B"
+               BuildableName = "libBGFMDB.a"
+               BlueprintName = "BGFMDB"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

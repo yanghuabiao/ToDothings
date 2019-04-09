@@ -5,5 +5,6 @@ target 'ToDoThings' do
 
 pod 'Masonry'
 pod 'BGFMDB'
-
+#pod 'WSDatePickerView', '~> 1.0'
+pod 'UITextView+Placeholder'
 end

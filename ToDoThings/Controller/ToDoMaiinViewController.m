@@ -70,7 +70,6 @@
 - (void)pageViewSelectdIndex:(NSInteger)index {
     
     [self.scrollView setContentOffset:CGPointMake(ScreenWidth * index, 0) animated:YES];
-  
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

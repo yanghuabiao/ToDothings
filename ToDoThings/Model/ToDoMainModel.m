@@ -18,7 +18,7 @@
     _type = type;
     if (type == ToDoThingsTypeIsDoing) {
         self.realStartTime = [ToDoTool getCurrentTimestamp];
-    }else if (type == ToDoThingsTypeToIsDone) {
+    }else if (type == ToDoThingsTypeIsDone) {
         self.realEndTime = [ToDoTool getCurrentTimestamp];
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747AD19225C7A1700F4049D /* ToDoEdtitView.m */; };
 		37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB8E1225B6AC7006C575A /* AppDelegate.m */; };
 		37EEB8E8225B6AC7006C575A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E6225B6AC7006C575A /* Main.storyboard */; };
 		37EEB8EA225B6AC9006C575A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E9225B6AC9006C575A /* Assets.xcassets */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3747AD18225C7A1700F4049D /* ToDoEdtitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoEdtitView.h; sourceTree = "<group>"; };
+		3747AD19225C7A1700F4049D /* ToDoEdtitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoEdtitView.m; sourceTree = "<group>"; };
 		37EEB8DD225B6AC7006C575A /* ToDoThings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoThings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EEB8E0225B6AC7006C575A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		37EEB8E1225B6AC7006C575A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 			children = (
 				37EEB922225B7274006C575A /* UIView+ZDD.h */,
 				37EEB923225B7275006C575A /* UIView+ZDD.m */,
+				3747AD18225C7A1700F4049D /* ToDoEdtitView.h */,
+				3747AD19225C7A1700F4049D /* ToDoEdtitView.m */,
 				37EEB926225B75BA006C575A /* ToFirstDoListCell.h */,
 				37EEB927225B75BA006C575A /* ToFirstDoListCell.m */,
 			);
@@ -403,6 +408,7 @@
 				37EEB917225B705C006C575A /* TODoFirstController.m in Sources */,
 				37EEB924225B7275006C575A /* UIView+ZDD.m in Sources */,
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,
+				3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */,
 				37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */,
 				37EEB91D225B7082006C575A /* ToDoThridController.m in Sources */,
 			);

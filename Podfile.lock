@@ -6,20 +6,24 @@ PODS:
     - BGFMDB/FMDB
   - BGFMDB/FMDB (2.0.13)
   - Masonry (1.1.0)
+  - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
   - BGFMDB
   - Masonry
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BGFMDB
     - Masonry
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 309ce8c8952e64fa0598108f349e82d44fa50b4b
+PODFILE CHECKSUM: 32446ecc0de41c86edb936ca70d044d7302a1269
 
 COCOAPODS: 1.6.1

@@ -8,11 +8,16 @@
 
 #import "TODoFirstController.h"
 #import "ToFirstDoListCell.h"
+#import "GODDBHelper.h"
 #import <Masonry.h>
+#import "ToDoEdtitView.h"
+
+
 @interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong) ToDoEdtitView *editView;
 
 @end
 
@@ -20,27 +25,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
+    [self reloadList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadList) name:@"reloadList" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)reloadList {
+    NSArray *tempArr = [[GODDBHelper sharedHelper] god_queryWithType:ToDoThingsTypeToDo];
+    if (tempArr.count == 0) {
+        ToDoMainModel *model = [ToDoMainModel new];
+        model.title = @"约了个小姐姐";
+        model.content = @"远上寒山石径斜，白云深处有人家，停车做爱枫林晚，s霜叶红于二月花";
+        model.startTime = @"1554565604";
+        model.endTime = @"1554997604";
+        model.type = ToDoThingsTypeToDo;
+        
+        ToDoMainModel *model1 = [ToDoMainModel new];
+        model1.title = @"打球";
+        model1.content = @"分开辣就是六块腹肌氨基酚骄傲立刻就分开辣椒是否老卡机斯洛伐克奇偶去肥胖离开砥砺奋进按老规矩辣椒风口浪尖阿弗莱克";
+        model1.startTime = @"1555084004";
+        model1.endTime = @"1557676004";
+        model1.type = ToDoThingsTypeToDo;
+        model1.isOpenNoti = YES;
+        
+        tempArr = @[model, model1];
+    }
     
-    ToDoMainModel *model = [ToDoMainModel new];
-    model.title = @"约了个小姐姐";
-    model.content = @"远上寒山石径斜，白云深处有人家，停车做爱枫林晚，s霜叶红于二月花";
-    model.startTime = @"1554565604";
-    model.endTime = @"1554997604";
-    model.type = ToDoThingsTypeToDo;
-    
-    ToDoMainModel *model1 = [ToDoMainModel new];
-    model1.title = @"打球";
-    model1.content = @"分开辣就是六块腹肌氨基酚骄傲立刻就分开辣椒是否老卡机斯洛伐克奇偶去肥胖离开砥砺奋进按老规矩辣椒风口浪尖阿弗莱克";
-    model1.startTime = @"1555084004";
-    model1.endTime = @"1557676004";
-    model1.type = ToDoThingsTypeToDo;
-    model1.isOpenNoti = YES;
-    
-    [self.dataArr addObjectsFromArray:@[model, model1]];
+    [self.dataArr removeAllObjects];
+    [self.dataArr addObjectsFromArray:tempArr];
     [self.tableView reloadData];
-    
 }
 
 - (void)setupUI {
@@ -51,19 +69,18 @@
 }
 
 - (void)clickEditWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
-    
+    [self.editView show];
 }
-
+//点击开始
 - (void)clickStartWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
     model.type = ToDoThingsTypeIsDoing;
-    
+    [[GODDBHelper sharedHelper] god_saveOrUpdate:model];
     [self.dataArr removeObject:model];
-    
-    
+    [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)clickDeleteWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
-    
+    [[GODDBHelper sharedHelper] god_delete:model.bg_id];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,6 +130,13 @@
         _dataArr = [NSMutableArray array];
     }
     return _dataArr;
+}
+
+- (ToDoEdtitView *)editView {
+    if (!_editView) {
+        _editView = [[ToDoEdtitView alloc] init];
+    }
+    return _editView;
 }
 
 @end

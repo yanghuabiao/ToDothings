@@ -114,16 +114,43 @@
     _model = model;
     self.titleLb.text = model.title;
     self.contentLb.text = model.content;
-    if (model.isOpenNoti) {
-        self.statusLb.text = @"通知已开启";
-        self.statusLb.textColor = [UIColor whiteColor];
-        
-        self.clockIV.image = [UIImage imageNamed:@"hasNoti"];
-    }else {
-        self.statusLb.text = @"未开启通知";
-        self.statusLb.textColor = [UIColor colorWithRed:137 green:137 blue:137 alpha:1];
-        
-        self.clockIV.image = [UIImage imageNamed:@"noNoti"];
+    
+    switch (model.type) {
+        case ToDoThingsTypeToDo:
+            self.editIv.hidden = NO;
+            if (model.isOpenNoti) {
+                self.statusLb.text = @"通知已开启";
+                self.statusLb.textColor = [UIColor whiteColor];
+                
+                self.clockIV.image = [UIImage imageNamed:@"hasNoti"];
+            }else {
+                self.statusLb.text = @"未开启通知";
+                self.statusLb.textColor = [UIColor colorWithRed:137 green:137 blue:137 alpha:1];
+                
+                self.clockIV.image = [UIImage imageNamed:@"noNoti"];
+            }
+            [self.strtBtn setTitle:@"开始"];
+            [self.strtBtn setImg:@"start"];
+            self.strtBtn.userInteractionEnabled = YES;
+            break;
+        case ToDoThingsTypeIsDoing:
+            self.editIv.hidden = YES;
+            self.clockIV.image = [UIImage imageNamed:@"hasNoti"];
+            self.statusLb.textColor = [UIColor whiteColor];
+            self.statusLb.text = @"已耗时:\n10:04:20";
+            [self.strtBtn setTitle:@"完成"];
+            [self.strtBtn setImg:@"start"];
+            self.strtBtn.userInteractionEnabled = YES;
+            break;
+        default:
+            self.editIv.hidden = YES;
+            self.clockIV.image = [UIImage imageNamed:@"noNoti"];
+            self.statusLb.textColor = [UIColor whiteColor];
+            self.statusLb.text = @"总耗时:\n10:04:20";
+            [self.strtBtn setTitle:@"已完成"];
+            [self.strtBtn setImg:@"start"];
+            self.strtBtn.userInteractionEnabled = NO;
+            break;
     }
     
     if (model.isOpenCell) {
@@ -233,7 +260,7 @@
     
     [self.bgv addSubview:self.statusLb];
     [self.statusLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.lineView_first.mas_bottom).mas_equalTo(75);
+        make.top.mas_equalTo(self.lineView_first.mas_bottom).mas_equalTo(65);
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(self.lineView_second.mas_left);
     }];
@@ -255,7 +282,7 @@
         make.right.mas_equalTo(-20);
         make.top.mas_equalTo(self.lineView_fouth.mas_bottom);
         make.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(70);
     }];
 
     [self.bgv addSubview:self.strtBtn];
@@ -263,7 +290,7 @@
         make.right.mas_equalTo(self.delBtn.mas_left).mas_equalTo(-25);
         make.top.mas_equalTo(self.lineView_fouth.mas_bottom);
         make.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(70);
     }];
 }
 
@@ -314,6 +341,7 @@
         _statusLb = [[UILabel alloc] init];
         _statusLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         _statusLb.textAlignment = NSTextAlignmentCenter;
+        _statusLb.numberOfLines = 2;
     }
     return _statusLb;
 }
@@ -405,8 +433,6 @@
 -(ToDoTitleAndIVView *)strtBtn {
     if (!_strtBtn) {
         _strtBtn = [[ToDoTitleAndIVView alloc] init];
-        [_strtBtn setTitle:@"开始"];
-        [_strtBtn setImg:@"start"];
         _strtBtn.userInteractionEnabled = YES;
         [_strtBtn addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickStartBtn)]];
 

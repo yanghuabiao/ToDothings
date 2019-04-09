@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSInteger, ToDoThingsType){
     ToDoThingsTypeToDo = 0,//待办
     ToDoThingsTypeIsDoing,//正在处理
-    ToDoThingsTypeToIsDone//已完成的
+    ToDoThingsTypeIsDone//已完成的
 };
 
 
