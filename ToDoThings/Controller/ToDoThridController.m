@@ -7,7 +7,7 @@
 //
 
 #import "ToDoThridController.h"
-
+#import "GODSettingViewController.h"
 @interface ToDoThridController ()
 
 @end
@@ -19,5 +19,9 @@
 
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[GODSettingViewController new]];
+    [self presentViewController:navi animated:YES completion:nil];
+}
 
 @end

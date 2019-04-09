@@ -42,6 +42,10 @@
     return [ToDoMainModel bg_delete:@"ToDo" where:where];
 }
 
+- (void)god_clear {
+    [ToDoMainModel bg_clear:@"ToDo"];
+}
+
 - (void)addLocalNoti:(ToDoMainModel *)todo {
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。

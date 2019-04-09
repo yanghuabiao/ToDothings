@@ -5,5 +5,6 @@ target 'ToDoThings' do
 
 pod 'Masonry'
 pod 'BGFMDB'
-
+pod 'MFHUDManager'
+pod 'QMUIKit',:inhibit_warnings => true
 end
