@@ -24,8 +24,10 @@
 + (NSString *)getStartTimeWithTime:(NSString *)time {
     //计算时间差
     NSDate *nowDate = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
-    NSTimeInterval startTime = [time doubleValue]*0.001;
-    NSDate *detaildate = [NSDate dateWithTimeIntervalSince1970:startTime];
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+
+    NSDate *detaildate = [dateFormatter dateFromString:time];
     //对比得到差值
     NSTimeInterval timeInterval = [detaildate timeIntervalSinceDate:nowDate];
     
@@ -79,10 +81,10 @@
     NSString *dateStr = @"";
     if ([yearStr isEqualToString:nowYear]) {
         ////  在同一年
-        [dateFormatter setDateFormat:@"MM月dd日 HH:mm"];
+        [dateFormatter setDateFormat:@"MM-dd HH:mm"];
         dateStr = [dateFormatter stringFromDate:needFormatDate];
     } else {
-        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
         dateStr = [dateFormatter stringFromDate:needFormatDate];
     }
     

@@ -161,7 +161,7 @@
         self.strtBtn.hidden = YES;
     }
     self.statTimeLb.text = [ToDoTool getStartTimeWithTime:model.startTime];
-    self.endTimeLb.text = [ToDoTool formateDateThisYearWithTimestamp:model.endTime];
+    self.endTimeLb.text = model.endTime;
 }
 
 - (void)clickEdit {
