@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <UserNotifications/UserNotifications.h>
+#import "ToDoMainModel.h"
+#import "GODDBHelper.h"
+
 @interface AppDelegate ()
 <
 UNUserNotificationCenterDelegate
@@ -27,6 +30,20 @@ UNUserNotificationCenterDelegate
             //不允许
         }
     }];
+    
+    ToDoMainModel *todo = [[ToDoMainModel alloc] init];
+    todo.title = @"asd";
+    todo.content = @"zzz";
+    todo.startTime = @"2019-4-9 13:20:00";
+    todo.endTime = @"2019-11-11 14:00:00";
+    todo.isOpenNoti = YES;
+    todo.type = ToDoThingsTypeToDo;
+    BOOL suc = [[GODDBHelper sharedHelper] god_saveOrUpdate:todo];
+    if (suc) {
+        NSLog(@"成功");
+    }else {
+        NSLog(@"失败");
+    }
     return YES;
 }
 
