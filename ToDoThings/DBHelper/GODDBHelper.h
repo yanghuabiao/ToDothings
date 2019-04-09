@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GODDBHelper : NSObject
 + (instancetype)sharedHelper;
+//保存或更新：表中主键存在就更新，表中没有该主键则新增
 - (BOOL)god_saveOrUpdate:(ToDoMainModel *)todo;
+//根据 type 获取模型数组
 - (NSArray<ToDoMainModel *> *)god_queryWithType:(ToDoThingsType)type;
+//根据主键删除模型
 - (BOOL)god_delete:(NSNumber *)pk;
 @end
 
