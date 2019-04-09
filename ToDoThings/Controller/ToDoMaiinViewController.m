@@ -14,7 +14,7 @@
 
 #import "GODDefine.h"
 #import "UIView+ZDD.h"
-
+#import "UIColor+CustomColors.h"
 
 @interface ToDoMaiinViewController ()<UIScrollViewDelegate>
 
@@ -38,11 +38,11 @@
 
 - (void)setupUI {
     
-    NSArray *array = [NSArray arrayWithObjects:@"待办", @"进行中", @"已完成", nil];
+    NSArray *array = [NSArray arrayWithObjects:@"待开始", @"进行中", @"已完成", nil];
     self.segment = [[UISegmentedControl alloc]initWithItems:array];
     self.segment.frame = CGRectMake(10, STATUSBARHEIGHT + 20, self.view.frame.size.width-20, 30);
     self.segment.apportionsSegmentWidthsByContent = YES;
-    self.segment.tintColor = [UIColor blackColor];
+    self.segment.tintColor = [UIColor customBlueColor];
     [self.segment addTarget:self action:@selector(change:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segment];
     
@@ -63,18 +63,36 @@
 -(void)change:(UISegmentedControl *)sender{
 
     [self.scrollView setContentOffset:CGPointMake(ScreenWidth * sender.selectedSegmentIndex, 0) animated:YES];
-
+    [UIView animateWithDuration:0.5 animations:^{
+        if (!sender.selectedSegmentIndex) {
+            sender.tintColor = [UIColor customBlueColor];
+        }else if (sender.selectedSegmentIndex == 1) {
+            sender.tintColor = [UIColor customRedColor];
+        }else {
+            sender.tintColor = [UIColor customGreenColor];
+        }
+    }];
 }
 
 
 - (void)pageViewSelectdIndex:(NSInteger)index {
     
     [self.scrollView setContentOffset:CGPointMake(ScreenWidth * index, 0) animated:YES];
+    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
     self.segment.selectedSegmentIndex = scrollView.contentOffset.x/ScreenWidth;
+    [UIView animateWithDuration:0.5 animations:^{
+        if (!self.segment.selectedSegmentIndex) {
+            self.segment.tintColor = [UIColor customBlueColor];
+        }else if (self.segment.selectedSegmentIndex == 1) {
+            self.segment.tintColor = [UIColor customRedColor];
+        }else {
+            self.segment.tintColor = [UIColor customGreenColor];
+        }
+    }];
 }
 
 
@@ -85,6 +103,8 @@
         _scrollView.contentSize = CGSizeMake(ScreenWidth * 3, ScreenHeight - SafeTabBarHeight - StatusBarHeight - 44);
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
     }
     return _scrollView;
 }
