@@ -9,5 +9,7 @@
 #import "ToDoMainModel.h"
 
 @implementation ToDoMainModel
-
+- (NSString *)bg_tableName {
+    return @"ToDo";
+}
 @end

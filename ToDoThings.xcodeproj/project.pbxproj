@@ -22,6 +22,7 @@
 		37EEB928225B75BA006C575A /* ToFirstDoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB927225B75BA006C575A /* ToFirstDoListCell.m */; };
 		37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB92A225B8BDE006C575A /* ToDoMainModel.m */; };
 		37EEB92E225B8DA4006C575A /* ToDoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB92D225B8DA4006C575A /* ToDoTool.m */; };
+		4A2A0192225C3572008345A5 /* GODDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A0191225C3572008345A5 /* GODDBHelper.m */; };
 		752A96FFDFD72696B7F750B1 /* libPods-ToDoThings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52457529586FB586661E35DF /* libPods-ToDoThings.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,8 @@
 		37EEB92A225B8BDE006C575A /* ToDoMainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoMainModel.m; sourceTree = "<group>"; };
 		37EEB92C225B8DA4006C575A /* ToDoTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoTool.h; sourceTree = "<group>"; };
 		37EEB92D225B8DA4006C575A /* ToDoTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoTool.m; sourceTree = "<group>"; };
+		4A2A0190225C3572008345A5 /* GODDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GODDBHelper.h; sourceTree = "<group>"; };
+		4A2A0191225C3572008345A5 /* GODDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GODDBHelper.m; sourceTree = "<group>"; };
 		52457529586FB586661E35DF /* libPods-ToDoThings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDoThings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		553348F04396B9D762486594 /* Pods-ToDoThings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoThings.debug.xcconfig"; path = "Target Support Files/Pods-ToDoThings/Pods-ToDoThings.debug.xcconfig"; sourceTree = "<group>"; };
 		9AD3CD320B878B7CCD67AE6C /* Pods-ToDoThings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoThings.release.xcconfig"; path = "Target Support Files/Pods-ToDoThings/Pods-ToDoThings.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 				37EEB91E225B71F7006C575A /* Model */,
 				37EEB91F225B71F8006C575A /* Other */,
 				37EEB921225B71F8006C575A /* View */,
+				4A2A018F225C3545008345A5 /* DBHelper */,
 				37EEB8E6225B6AC7006C575A /* Main.storyboard */,
 				37EEB8E9225B6AC9006C575A /* Assets.xcassets */,
 				37EEB8EB225B6AC9006C575A /* LaunchScreen.storyboard */,
@@ -206,6 +210,15 @@
 				37EEB927225B75BA006C575A /* ToFirstDoListCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A2A018F225C3545008345A5 /* DBHelper */ = {
+			isa = PBXGroup;
+			children = (
+				4A2A0190225C3572008345A5 /* GODDBHelper.h */,
+				4A2A0191225C3572008345A5 /* GODDBHelper.m */,
+			);
+			path = DBHelper;
 			sourceTree = "<group>";
 		};
 		5B0C5FA29D28ECAA2A282092 /* Frameworks */ = {
@@ -386,6 +399,7 @@
 				37EEB91A225B706D006C575A /* ToDoSecondController.m in Sources */,
 				37EEB8F0225B6AC9006C575A /* main.m in Sources */,
 				37EEB914225B6B0E006C575A /* ToDoMaiinViewController.m in Sources */,
+				4A2A0192225C3572008345A5 /* GODDBHelper.m in Sources */,
 				37EEB917225B705C006C575A /* TODoFirstController.m in Sources */,
 				37EEB924225B7275006C575A /* UIView+ZDD.m in Sources */,
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,

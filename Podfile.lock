@@ -1,16 +1,25 @@
 PODS:
+  - BGFMDB (2.0.13):
+    - BGFMDB/BG (= 2.0.13)
+    - BGFMDB/FMDB (= 2.0.13)
+  - BGFMDB/BG (2.0.13):
+    - BGFMDB/FMDB
+  - BGFMDB/FMDB (2.0.13)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
+  - BGFMDB
   - Masonry
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BGFMDB
     - Masonry
 
 SPEC CHECKSUMS:
+  BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 33f535f20f61f388a45c1f1bc0f10f40030f018d
+PODFILE CHECKSUM: 309ce8c8952e64fa0598108f349e82d44fa50b4b
 
 COCOAPODS: 1.6.1
