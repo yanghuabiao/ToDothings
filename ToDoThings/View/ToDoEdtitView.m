@@ -169,7 +169,6 @@
     if (!_cancelBtn) {
         _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_cancelBtn addTarget:self action:@selector(clickCancenBtn) forControlEvents:UIControlEventTouchUpInside];
-        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelBtn setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
