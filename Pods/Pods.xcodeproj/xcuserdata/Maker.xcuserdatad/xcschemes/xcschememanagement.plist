@@ -11,40 +11,47 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>MFHUDManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>Masonry.xcscheme</key>
+		<key>BRPickerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Pods-ToDoThings.xcscheme</key>
+		<key>MFHUDManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>QMUIKit.xcscheme</key>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-ToDoThings.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>UITextView+Placeholder.xcscheme</key>
+		<key>QMUIKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>UITextView+Placeholder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

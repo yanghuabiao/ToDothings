@@ -9,10 +9,11 @@
 
 #import "ToDoEdtitView.h"
 #import "GODDefine.h"
+#import "ToDoTool.H"
 #import <Masonry.h>
 #import "UIView+ZDD.h"
 #import <UITextView+Placeholder/UITextView+Placeholder.h>
-
+#import <BRPickerView.h>
 #define whiteBgvWidth ScreenWidth - 40
 #define whiteBgvHeight ScreenHeight - 100
 
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) UIButton *cancelBtn;
 @property (nonatomic, strong) UIButton *certainBtn;
 
+@property (nonatomic, strong) UILabel *firstTimeLb;
+@property (nonatomic, strong) UILabel *secondTimeLb;
 
 @property (nonatomic, strong) UIView *bgWhiteView;
 @property (nonatomic, strong) UIButton *masking;
@@ -87,15 +90,27 @@
     [self.bgWhiteView addSubview:self.startTimeLb];
     [self.startTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
-        make.right.mas_equalTo(-25);
+        make.width.mas_equalTo(120);
         make.top.mas_equalTo(self.notiLb.mas_bottom).mas_equalTo(15);
     }];
     
     [self.bgWhiteView addSubview:self.endTimeLb];
     [self.endTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
-        make.right.mas_equalTo(-25);
+        make.width.mas_equalTo(120);
         make.top.mas_equalTo(self.startTimeLb.mas_bottom).mas_equalTo(15);
+    }];
+    
+    [self.bgWhiteView addSubview:self.firstTimeLb];
+    [self.firstTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.startTimeLb.mas_right).mas_equalTo(50);
+        make.centerY.mas_equalTo(self.startTimeLb);
+    }];
+    
+    [self.bgWhiteView addSubview:self.secondTimeLb];
+    [self.secondTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.endTimeLb.mas_right).mas_equalTo(50);
+        make.centerY.mas_equalTo(self.endTimeLb);
     }];
     
     [self.bgWhiteView addSubview:self.cancelBtn];
@@ -124,6 +139,10 @@
         self.bgWhiteView.frame = CGRectMake(20, 50, whiteBgvWidth, whiteBgvHeight);
     }];
     [self.titleTf becomeFirstResponder];
+    
+    self.firstTimeLb.text = [ToDoTool getCurrentTimestamp];
+    self.secondTimeLb.text = [ToDoTool getCurrentTimestamp];
+
 }
 
 
@@ -163,6 +182,32 @@
         _endTimeLb.text = @"开始时间";
     }
     return _endTimeLb;
+}
+
+- (UILabel *)firstTimeLb {
+    if (!_firstTimeLb) {
+        _firstTimeLb = [[UILabel alloc] init];
+        _firstTimeLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
+        _firstTimeLb.textColor = [UIColor blackColor];
+        _firstTimeLb.layer.cornerRadius = 4;
+        _firstTimeLb.layer.masksToBounds = YES;
+        _firstTimeLb.layer.borderWidth = 1.0f;
+        _firstTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
+    }
+    return _firstTimeLb;
+}
+
+- (UILabel *)secondTimeLb {
+    if (!_secondTimeLb) {
+        _secondTimeLb = [[UILabel alloc] init];
+        _secondTimeLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
+        _firstTimeLb.textColor = [UIColor blackColor];
+        _secondTimeLb.layer.cornerRadius = 4;
+        _secondTimeLb.layer.masksToBounds = YES;
+        _secondTimeLb.layer.borderWidth = 1.0f;
+        _secondTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
+    }
+    return _secondTimeLb;
 }
 
 -(UIButton *)cancelBtn {

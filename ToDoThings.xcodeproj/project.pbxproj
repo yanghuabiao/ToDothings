@@ -438,6 +438,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ToDoThings/Pods-ToDoThings-resources.sh",
+				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_error.png",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_warnning.png",
@@ -447,6 +448,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_error.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_success.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_warnning.png",
