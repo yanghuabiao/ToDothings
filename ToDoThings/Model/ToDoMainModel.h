@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *realEndTime;
 //是否打开通知
 @property (nonatomic, assign) BOOL isOpenNoti;
+//是否展开cell
+@property (nonatomic, assign) BOOL isOpenCell;
+
 @property (nonatomic, assign) ToDoThingsType type;
 
 

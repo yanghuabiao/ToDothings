@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ToDoTool : NSObject
 
 
+/**
+ 获取当前时间戳
+ */
++ (NSString*)getCurrentTimestamp;
 //转换开始时间
 + (NSString *)getStartTimeWithTime:(NSString *)time;
 /**
@@ -21,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  timestamp: 时间戳字符串
  **/
 + (NSString *)formateDateThisYearWithTimestamp:(NSString *)timestamp;
+
 @end
 
 NS_ASSUME_NONNULL_END

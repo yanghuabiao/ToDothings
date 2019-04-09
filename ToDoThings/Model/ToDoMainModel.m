@@ -7,9 +7,20 @@
 //
 
 #import "ToDoMainModel.h"
+#import "ToDoTool.h"
 
 @implementation ToDoMainModel
 - (NSString *)bg_tableName {
     return @"ToDo";
 }
+
+- (void)setType:(ToDoThingsType)type {
+    _type = type;
+    if (type == ToDoThingsTypeIsDoing) {
+        self.realStartTime = [ToDoTool getCurrentTimestamp];
+    }else if (type == ToDoThingsTypeToIsDone) {
+        self.realEndTime = [ToDoTool getCurrentTimestamp];
+    }
+}
+
 @end

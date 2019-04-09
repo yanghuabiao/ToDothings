@@ -9,7 +9,7 @@
 #import "TODoFirstController.h"
 #import "ToFirstDoListCell.h"
 #import <Masonry.h>
-@interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource>
+@interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
@@ -50,6 +50,22 @@
     }];
 }
 
+- (void)clickEditWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
+    
+}
+
+- (void)clickStartWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
+    model.type = ToDoThingsTypeIsDoing;
+    
+    [self.dataArr removeObject:model];
+    
+    
+}
+
+- (void)clickDeleteWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }
@@ -57,16 +73,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ToFirstDoListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ToFirstDoListCell" forIndexPath:indexPath];
     cell.model = self.dataArr[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 170;
+    ToDoMainModel *model = self.dataArr[indexPath.row];
+    if (model.isOpenCell) {
+        return 200;
+    }
+    return 160;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
+    ToDoMainModel *model = self.dataArr[indexPath.row];
+    model.isOpenCell = !model.isOpenCell;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

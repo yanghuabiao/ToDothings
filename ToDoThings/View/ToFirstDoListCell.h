@@ -12,6 +12,8 @@
 @protocol ToFirstDoListCellDelegate <NSObject>
 
 - (void)clickEditWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model;
+- (void)clickStartWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model;
+- (void)clickDeleteWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model;
 
 @end
 
