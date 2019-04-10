@@ -12,6 +12,7 @@
 		37CB7421225DC1EA00144557 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB741F225DC1EA00144557 /* UIImage+ImageEffects.m */; };
 		37CB7424225DCBF900144557 /* ToDoShowDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB7423225DCBF900144557 /* ToDoShowDetailView.m */; };
 		37CB7427225DE2B300144557 /* ToDoDoneDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */; };
+		37CB742A225DF40B00144557 /* GODWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB7429225DF40B00144557 /* GODWebViewController.m */; };
 		37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB8E1225B6AC7006C575A /* AppDelegate.m */; };
 		37EEB8E8225B6AC7006C575A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E6225B6AC7006C575A /* Main.storyboard */; };
 		37EEB8EA225B6AC9006C575A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E9225B6AC9006C575A /* Assets.xcassets */; };
@@ -64,6 +65,8 @@
 		37CB7423225DCBF900144557 /* ToDoShowDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoShowDetailView.m; sourceTree = "<group>"; };
 		37CB7425225DE2B300144557 /* ToDoDoneDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDoneDetailView.h; sourceTree = "<group>"; };
 		37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDoneDetailView.m; sourceTree = "<group>"; };
+		37CB7428225DF40B00144557 /* GODWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GODWebViewController.h; sourceTree = "<group>"; };
+		37CB7429225DF40B00144557 /* GODWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GODWebViewController.m; sourceTree = "<group>"; };
 		37EEB8DD225B6AC7006C575A /* ToDoThings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoThings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EEB8E0225B6AC7006C575A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		37EEB8E1225B6AC7006C575A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 			children = (
 				37EEB8E0225B6AC7006C575A /* AppDelegate.h */,
 				37EEB8E1225B6AC7006C575A /* AppDelegate.m */,
+				37CB7428225DF40B00144557 /* GODWebViewController.h */,
+				37CB7429225DF40B00144557 /* GODWebViewController.m */,
 				37CB741B225DC1EA00144557 /* MODropAlert */,
 				37EEB920225B71F8006C575A /* Controller */,
 				37EEB91E225B71F7006C575A /* Model */,
@@ -471,6 +476,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ToDoThings/Pods-ToDoThings-resources.sh",
+				"${PODS_ROOT}/AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc",
 				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_error.png",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png",
@@ -481,6 +487,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AVOSCloud_Art.inc",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_error.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_success.png",
@@ -509,6 +516,7 @@
 				37EEB914225B6B0E006C575A /* ToDoMaiinViewController.m in Sources */,
 				4A2A0192225C3572008345A5 /* GODDBHelper.m in Sources */,
 				4A2A01A2225C78D2008345A5 /* JnPasswordView.m in Sources */,
+				37CB742A225DF40B00144557 /* GODWebViewController.m in Sources */,
 				37EEB917225B705C006C575A /* TODoFirstController.m in Sources */,
 				37EEB924225B7275006C575A /* UIView+ZDD.m in Sources */,
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,

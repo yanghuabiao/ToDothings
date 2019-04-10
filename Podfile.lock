@@ -1,4 +1,14 @@
 PODS:
+  - AVOSCloud (11.6.1)
+  - AVOSCloudIM (11.6.1):
+    - AVOSCloud (= 11.6.1)
+    - AVOSCloudIM/_ARC (= 11.6.1)
+    - AVOSCloudIM/_NOARC (= 11.6.1)
+  - AVOSCloudIM/_ARC (11.6.1):
+    - AVOSCloud (= 11.6.1)
+    - AVOSCloudIM/_NOARC (= 11.6.1)
+  - AVOSCloudIM/_NOARC (11.6.1):
+    - AVOSCloud (= 11.6.1)
   - BGFMDB (2.0.13):
     - BGFMDB/BG (= 2.0.13)
     - BGFMDB/FMDB (= 2.0.13)
@@ -277,6 +287,8 @@ PODS:
   - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
+  - AVOSCloud
+  - AVOSCloudIM
   - BGFMDB
   - BRPickerView
   - Masonry
@@ -286,6 +298,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AVOSCloud
+    - AVOSCloudIM
     - BGFMDB
     - BRPickerView
     - Masonry
@@ -294,6 +308,8 @@ SPEC REPOS:
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
+  AVOSCloud: 75fe137e0d4eae392047824cea66c9b99a2ea574
+  AVOSCloudIM: cc2079356c197f69d85d3cf6e1c99c5a1b6c0430
   BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   BRPickerView: 0590a8c5de9bd98c6b4e4f117a3dff6de287d5b2
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -301,6 +317,6 @@ SPEC CHECKSUMS:
   QMUIKit: 1bc386f20c68cf285484c933cf3ef3fea2a052f4
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 35d78630e65b1ab3f329adc38dcacfbf64542f0a
+PODFILE CHECKSUM: 89ff80234a8a6f965e260f4a781a9d39b1929af4
 
 COCOAPODS: 1.6.1

