@@ -43,7 +43,7 @@
 
 + (UIColor *)customRedColor
 {
-    return [self colorWithRed:231 green:76 blue:60];
+    return [self colorWithRed:240 green:94 blue:28];
 }
 
 + (UIColor *)customYellowColor
@@ -53,12 +53,12 @@
 
 + (UIColor *)customGreenColor
 {
-    return [self colorWithRed:46 green:204 blue:113];
+    return [self colorWithRed:27 green:129 blue:62];
 }
 
 + (UIColor *)customBlueColor
 {
-    return [self colorWithRed:52 green:152 blue:219];
+    return [self colorWithRed:0 green:137 blue:167];
 }
 
 + (UIColor *)customBlue1Color {
