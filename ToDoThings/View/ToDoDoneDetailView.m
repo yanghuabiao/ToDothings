@@ -185,7 +185,7 @@
         make.centerX.mas_equalTo(0);
         make.height.mas_equalTo(50);
         make.width.mas_equalTo(100);
-        make.top.mas_equalTo(self.realEndLb.mas_bottom).mas_equalTo(20);
+        make.top.mas_equalTo(self.realEndLb.mas_bottom).mas_equalTo(10);
     }];
     
 }

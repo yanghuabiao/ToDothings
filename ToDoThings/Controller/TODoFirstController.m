@@ -12,6 +12,7 @@
 #import <Masonry.h>
 #import "ToDoEdtitView.h"
 #import "GODDefine.h"
+#import "ToDoTool.h"
 
 @interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
@@ -43,6 +44,8 @@
         model.type = ToDoThingsTypeToDo;
         model.title = @"如何使用";
         model.content = @"1.点击右下角按钮新建事项\n2.填写事项标题，内容，选择开始时间，完成时间，是否需要提醒，然后点击对号\n3.点击列表的开始/完成，分别可以对事项进行开始和已完成的操作，删除可以删除事项\n4.谢谢您的使用";
+        model.startTime = [ToDoTool getCurrentTimestamp];
+        model.endTime = [ToDoTool getCurrentTimestamp];
         tempArr = @[model];
     }
     [self.dataArr removeAllObjects];

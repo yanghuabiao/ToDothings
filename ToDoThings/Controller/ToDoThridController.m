@@ -11,6 +11,7 @@
 #import "GODDBHelper.h"
 #import <Masonry.h>
 #import "GODSettingViewController.h"
+#import "ToDoDoneDetailView.h"
 
 @interface ToDoThridController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
@@ -76,7 +77,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ToDoMainModel *model = self.dataArr[indexPath.row];
-    
+    ToDoDoneDetailView *showView = [[ToDoDoneDetailView alloc] init];
+    [showView showWithModel:model];
     
 }
 
