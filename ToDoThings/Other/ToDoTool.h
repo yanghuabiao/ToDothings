@@ -25,7 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
  timestamp: 时间戳字符串
  **/
 + (NSString *)formateDateThisYearWithTimestamp:(NSString *)timestamp;
+/**
+ 
+  * 开始到结束的时间差
+ 
+  */
 
++ (NSString *)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime;
++ (NSInteger)Time:(NSString *)firstTime lagerThanTime:(NSString *)secondTime ;
 @end
 
 NS_ASSUME_NONNULL_END

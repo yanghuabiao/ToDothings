@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747AD19225C7A1700F4049D /* ToDoEdtitView.m */; };
+		37CB7420225DC1EA00144557 /* MODropAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB741E225DC1EA00144557 /* MODropAlertView.m */; };
+		37CB7421225DC1EA00144557 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB741F225DC1EA00144557 /* UIImage+ImageEffects.m */; };
+		37CB7424225DCBF900144557 /* ToDoShowDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB7423225DCBF900144557 /* ToDoShowDetailView.m */; };
+		37CB7427225DE2B300144557 /* ToDoDoneDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */; };
 		37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EEB8E1225B6AC7006C575A /* AppDelegate.m */; };
 		37EEB8E8225B6AC7006C575A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E6225B6AC7006C575A /* Main.storyboard */; };
 		37EEB8EA225B6AC9006C575A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEB8E9225B6AC9006C575A /* Assets.xcassets */; };
@@ -52,6 +56,14 @@
 /* Begin PBXFileReference section */
 		3747AD18225C7A1700F4049D /* ToDoEdtitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoEdtitView.h; sourceTree = "<group>"; };
 		3747AD19225C7A1700F4049D /* ToDoEdtitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoEdtitView.m; sourceTree = "<group>"; };
+		37CB741C225DC1EA00144557 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		37CB741D225DC1EA00144557 /* MODropAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MODropAlertView.h; sourceTree = "<group>"; };
+		37CB741E225DC1EA00144557 /* MODropAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MODropAlertView.m; sourceTree = "<group>"; };
+		37CB741F225DC1EA00144557 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		37CB7422225DCBF900144557 /* ToDoShowDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShowDetailView.h; sourceTree = "<group>"; };
+		37CB7423225DCBF900144557 /* ToDoShowDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoShowDetailView.m; sourceTree = "<group>"; };
+		37CB7425225DE2B300144557 /* ToDoDoneDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDoneDetailView.h; sourceTree = "<group>"; };
+		37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDoneDetailView.m; sourceTree = "<group>"; };
 		37EEB8DD225B6AC7006C575A /* ToDoThings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoThings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EEB8E0225B6AC7006C575A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		37EEB8E1225B6AC7006C575A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -126,6 +138,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37CB741B225DC1EA00144557 /* MODropAlert */ = {
+			isa = PBXGroup;
+			children = (
+				37CB741D225DC1EA00144557 /* MODropAlertView.h */,
+				37CB741E225DC1EA00144557 /* MODropAlertView.m */,
+				37CB741C225DC1EA00144557 /* UIImage+ImageEffects.h */,
+				37CB741F225DC1EA00144557 /* UIImage+ImageEffects.m */,
+			);
+			path = MODropAlert;
+			sourceTree = "<group>";
+		};
 		37EEB8D4225B6AC7006C575A = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +176,7 @@
 			children = (
 				37EEB8E0225B6AC7006C575A /* AppDelegate.h */,
 				37EEB8E1225B6AC7006C575A /* AppDelegate.m */,
+				37CB741B225DC1EA00144557 /* MODropAlert */,
 				37EEB920225B71F8006C575A /* Controller */,
 				37EEB91E225B71F7006C575A /* Model */,
 				37EEB91F225B71F8006C575A /* Other */,
@@ -229,6 +253,10 @@
 				37EEB923225B7275006C575A /* UIView+ZDD.m */,
 				3747AD18225C7A1700F4049D /* ToDoEdtitView.h */,
 				3747AD19225C7A1700F4049D /* ToDoEdtitView.m */,
+				37CB7422225DCBF900144557 /* ToDoShowDetailView.h */,
+				37CB7423225DCBF900144557 /* ToDoShowDetailView.m */,
+				37CB7425225DE2B300144557 /* ToDoDoneDetailView.h */,
+				37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */,
 				37EEB926225B75BA006C575A /* ToFirstDoListCell.h */,
 				37EEB927225B75BA006C575A /* ToFirstDoListCell.m */,
 			);
@@ -473,6 +501,7 @@
 			files = (
 				4A2A01A9225C88FC008345A5 /* GODNormalTableViewCell.m in Sources */,
 				4A2A019A225C65CC008345A5 /* GODSettingViewController.m in Sources */,
+				37CB7421225DC1EA00144557 /* UIImage+ImageEffects.m in Sources */,
 				37EEB928225B75BA006C575A /* ToFirstDoListCell.m in Sources */,
 				37EEB92E225B8DA4006C575A /* ToDoTool.m in Sources */,
 				37EEB91A225B706D006C575A /* ToDoSecondController.m in Sources */,
@@ -485,6 +514,9 @@
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,
 				3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */,
 				37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */,
+				37CB7420225DC1EA00144557 /* MODropAlertView.m in Sources */,
+				37CB7424225DCBF900144557 /* ToDoShowDetailView.m in Sources */,
+				37CB7427225DE2B300144557 /* ToDoDoneDetailView.m in Sources */,
 				75D91583225CCEB0003721F4 /* UIColor+CustomColors.m in Sources */,
 				4A2A019E225C6E33008345A5 /* GODFaceIDTableViewCell.m in Sources */,
 				37EEB91D225B7082006C575A /* ToDoThridController.m in Sources */,

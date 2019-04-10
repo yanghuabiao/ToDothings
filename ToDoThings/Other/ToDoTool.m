@@ -15,9 +15,10 @@
  获取当前时间戳
  */
 + (NSString*)getCurrentTimestamp {
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString*timeString = [NSString stringWithFormat:@"%0.f", a];//转为字符型
+    NSDate* dat = [NSDate date];
+    NSDateFormatter *dateFormatter = [self dateFormatter];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString*timeString = [dateFormatter stringFromDate:dat];
     return timeString;
 }
 
@@ -25,7 +26,7 @@
     //计算时间差
     NSDate *nowDate = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
     NSDateFormatter *dateFormatter = [self dateFormatter];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 
     NSDate *detaildate = [dateFormatter dateFromString:time];
     //对比得到差值
@@ -49,7 +50,7 @@
     else
         secondsStr = [NSString stringWithFormat:@"%d",seconds];
     if (hours<=0&&minutes<=0&&seconds<=0) {
-        NSString *timeStr = [self formateDateThisYearWithTimestamp:time];
+        NSString *timeStr = [self formateDateThisYearWithDate:detaildate];
         timeStr = [NSString stringWithFormat:@"%@ 已逾期", timeStr];
         return timeStr;
     }
@@ -68,11 +69,10 @@
  
  timestamp: 时间戳字符串
  **/
-+ (NSString *)formateDateThisYearWithTimestamp:(NSString *)timestamp {
++ (NSString *)formateDateThisYearWithDate:(NSDate *)needFormatDate {
     // 实例化一个NSDateFormatter对象
     NSDateFormatter *dateFormatter = [self dateFormatter];
     NSDate *nowDate = [NSDate date];
-    NSDate *needFormatDate = [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue]];
     
     [dateFormatter setDateFormat:@"yyyy"];
     NSString *yearStr = [dateFormatter stringFromDate:needFormatDate];
@@ -84,7 +84,7 @@
         [dateFormatter setDateFormat:@"MM-dd HH:mm"];
         dateStr = [dateFormatter stringFromDate:needFormatDate];
     } else {
-        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         dateStr = [dateFormatter stringFromDate:needFormatDate];
     }
     
@@ -94,6 +94,60 @@
 + (NSDateFormatter *)dateFormatter {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     return dateFormatter;
+}
+
+
+/**
+ 
+  * 开始到结束的时间差
+ 
+  */
+
++ (NSString *)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime{
+    
+    
+    NSDateFormatter *date = [[NSDateFormatter alloc]init];
+    [date setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *startD =[date dateFromString:startTime];
+    NSDate *endD = [date dateFromString:endTime];
+    NSTimeInterval start = [startD timeIntervalSince1970]*1;
+    NSTimeInterval end = [endD timeIntervalSince1970]*1;
+    NSTimeInterval value = end - start;
+    int second = (int)value %60;//秒
+    int minute = (int)value /60%60;
+    int house = (int)value / (24 *3600)%3600;
+    int day = (int)value / (24 *3600);
+    NSString *str;
+    if (day != 0) {
+        str = [NSString stringWithFormat:@"%d天%d小时%d分%d秒",day,house,minute,second];
+    }else if (day==0 && house !=0) {
+        str = [NSString stringWithFormat:@"%d小时%d分%d秒",house,minute,second];
+    }else if (day==0 && house==0 && minute!=0) {
+        str = [NSString stringWithFormat:@"%d分%d秒",minute,second];
+    }else{
+        str = [NSString stringWithFormat:@"%d秒",second];
+    }
+    return str;
+    
+    
+}
+
++ (NSInteger)Time:(NSString *)firstTime lagerThanTime:(NSString *)secondTime {
+    //计算时间差
+    NSDateFormatter *date = [[NSDateFormatter alloc]init];
+    [date setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *startD =[date dateFromString:firstTime];
+    NSDate *endD = [date dateFromString:secondTime];
+    NSTimeInterval start = [startD timeIntervalSince1970]*1;
+    NSTimeInterval end = [endD timeIntervalSince1970]*1;
+    NSTimeInterval value = start - end;
+    if (value == 0) {
+        return 0;
+    }else if (value > 0) {
+        return 1;
+    }else {
+        return -1;
+    }
 }
 
 @end

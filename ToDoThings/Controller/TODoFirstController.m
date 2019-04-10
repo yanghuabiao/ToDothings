@@ -38,7 +38,13 @@
 
 - (void)reloadList {
     NSArray *tempArr = [[GODDBHelper sharedHelper] god_queryWithType:ToDoThingsTypeToDo];
-    
+    if (tempArr.count == 0) {
+        ToDoMainModel *model = [ToDoMainModel new];
+        model.type = ToDoThingsTypeToDo;
+        model.title = @"如何使用";
+        model.content = @"1.点击右下角按钮新建事项\n2.填写事项标题，内容，选择开始时间，完成时间，是否需要提醒，然后点击对号\n3.点击列表的开始/完成，分别可以对事项进行开始和已完成的操作，删除可以删除事项\n4.谢谢您的使用";
+        tempArr = @[model];
+    }
     [self.dataArr removeAllObjects];
     [self.dataArr addObjectsFromArray:tempArr];
     [self.tableView reloadData];
@@ -54,7 +60,7 @@
     [self.writeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(60);
         make.right.mas_equalTo(-20.0f);
-        make.bottom.mas_equalTo(-(SafeAreaBottomHeight + 60.0f));
+        make.bottom.mas_equalTo(-(SafeAreaBottomHeight + 100.0f));
     }];
 }
 
@@ -74,6 +80,7 @@
 }
 
 - (void)clickDeleteWithCell:(ToFirstDoListCell *)cell model:(ToDoMainModel *)model {
+    
     [[GODDBHelper sharedHelper] god_delete:model.bg_id];
 }
 

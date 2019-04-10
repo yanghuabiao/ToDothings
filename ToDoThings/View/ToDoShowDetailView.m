@@ -1,13 +1,12 @@
-
 //
-//  ToDoEdtitView.m
+//  ToDoShowDetailView.m
 //  ToDoThings
 //
-//  Created by Maker on 2019/4/9.
+//  Created by Maker on 2019/4/10.
 //  Copyright © 2019 MakerYang.com. All rights reserved.
 //
 
-#import "ToDoEdtitView.h"
+#import "ToDoShowDetailView.h"
 #import "GODDefine.h"
 #import "ToDoTool.H"
 #import <Masonry.h>
@@ -15,13 +14,12 @@
 #import <UITextView+Placeholder/UITextView+Placeholder.h>
 #import <BRPickerView.h>
 #import "GODDBHelper.h"
-#import <MFHUDManager.h>
 
 
 #define whiteBgvWidth ScreenWidth - 40
 #define whiteBgvHeight 500
 
-@interface ToDoEdtitView ()
+@interface ToDoShowDetailView ()
 
 @property (nonatomic, strong) UITextField *titleTf;
 @property (nonatomic, strong) UITextView *contentTV;
@@ -36,6 +34,10 @@
 @property (nonatomic, strong) UILabel *secondTimeLb;
 @property (nonatomic, strong) UILabel *thridNotiLb;
 
+@property (nonatomic, strong) UILabel *realStartLb;
+@property (nonatomic, strong) UILabel *realTimeLb;
+
+
 @property (nonatomic, strong) UIView *bgWhiteView;
 @property (nonatomic, strong) UIButton *masking;
 
@@ -44,7 +46,7 @@
 @end
 
 
-@implementation ToDoEdtitView
+@implementation ToDoShowDetailView
 
 - (instancetype)init {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
@@ -66,7 +68,7 @@
     
     [self addSubview:self.bgWhiteView];
     self.bgWhiteView.frame = CGRectMake(20, ScreenHeight, whiteBgvWidth, whiteBgvHeight + SafeAreaBottomHeight);
-
+    
     
     [self.bgWhiteView addSubview:self.titleTf];
     [self.titleTf mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,13 +100,29 @@
         make.right.mas_equalTo(-25);
         make.top.mas_equalTo(self.contentTV.mas_bottom).mas_equalTo(15);
     }];
-
+    
     
     [self.bgWhiteView addSubview:self.startTimeLb];
     [self.startTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
         make.width.mas_equalTo(100);
         make.top.mas_equalTo(self.notiLb.mas_bottom).mas_equalTo(20);
+    }];
+    
+    [self.bgWhiteView addSubview:self.realStartLb];
+    [self.realStartLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(25);
+        make.width.mas_equalTo(100);
+        make.top.mas_equalTo(self.startTimeLb.mas_bottom).mas_equalTo(15);
+    }];
+    
+    [self.bgWhiteView addSubview:self.realTimeLb];
+    [self.realTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.realStartLb.mas_right);
+        make.centerY.mas_equalTo(self.realStartLb);
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(25);
+        
     }];
     
     [self.bgWhiteView addSubview:self.thridNotiLb];
@@ -119,7 +137,7 @@
     [self.endTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
         make.width.mas_equalTo(100);
-        make.top.mas_equalTo(self.startTimeLb.mas_bottom).mas_equalTo(15);
+        make.top.mas_equalTo(self.realStartLb.mas_bottom).mas_equalTo(15);
     }];
     
     [self.bgWhiteView addSubview:self.firstTimeLb];
@@ -128,7 +146,7 @@
         make.centerY.mas_equalTo(self.startTimeLb);
         make.width.mas_equalTo(140);
         make.height.mas_equalTo(25);
-
+        
     }];
     
     [self.bgWhiteView addSubview:self.secondTimeLb];
@@ -141,16 +159,17 @@
     
     [self.bgWhiteView addSubview:self.cancelBtn];
     [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(50);
+        make.left.mas_equalTo(20);
         make.width.height.mas_equalTo(50);
-        make.top.mas_equalTo(self.endTimeLb.mas_bottom).mas_equalTo(60);
+        make.top.mas_equalTo(0);
     }];
     
     [self.bgWhiteView addSubview:self.certainBtn];
     [self.certainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-50);
-        make.width.height.mas_equalTo(50);
-        make.top.mas_equalTo(self.endTimeLb.mas_bottom).mas_equalTo(60);
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(100);
+        make.top.mas_equalTo(self.endTimeLb.mas_bottom).mas_equalTo(30);
     }];
     
 }
@@ -170,19 +189,13 @@
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"YYYY-MM-dd HH:mm"];
-    if (self.model) {
-        self.titleTf.text = self.model.title;
-        self.contentTV.text = self.model.content;
-        self.firstTimeLb.text = self.model.startTime;
-        self.secondTimeLb.text = self.model.endTime;
-    }else {
-        self.model = [[ToDoMainModel alloc] init];
-        self.model.type = ToDoThingsTypeToDo;
-        self.firstTimeLb.text = [format stringFromDate:[NSDate br_setHour:0 minute:5]];
-        self.secondTimeLb.text = [format stringFromDate:[NSDate br_setHour:0 minute:10]];
-    }
+    self.titleTf.text = self.model.title;
+    self.contentTV.text = self.model.content;
+    self.firstTimeLb.text = self.model.startTime;
+    self.secondTimeLb.text = self.model.endTime;
     self.thridNotiLb.text = self.model.isOpenNoti ? @"开" : @"关";
-
+    self.realTimeLb.text = self.model.realStartTime;
+    
 }
 
 -(void)dismissAndRemove {
@@ -212,56 +225,12 @@
     [self dismissAndRemove];
 }
 
-- (void)clickNotiBtn {
-    __weak typeof(self)weakSelf = self;
-    [BRStringPickerView showStringPickerWithTitle:@"是否提醒" dataSource:@[@"关", @"开"] defaultSelValue:0 resultBlock:^(id selectValue) {
-        weakSelf.thridNotiLb.text = selectValue;
-    }];
-}
-
 - (void)clickCertainBtn {
-    
-    if (self.titleTf.text.length == 0) {
-        [MFHUDManager showError:@"请输入标题"];
-        return;
-    }else if (self.contentTV.text.length == 0) {
-        [MFHUDManager showError:@"请输入内容"];
-        return;
-    }else if ([ToDoTool Time:self.secondTimeLb.text lagerThanTime:self.firstTimeLb.text] != 1) {
-        [MFHUDManager showError:@"完成时间不能大于开始时间"];
-        return;
-    }
-    
-    self.model.isOpenNoti = [self.thridNotiLb.text isEqualToString:@"开"];
-    self.model.title = self.titleTf.text;
-    self.model.content = self.contentTV.text;
-    self.model.startTime = self.firstTimeLb.text;
-    self.model.endTime = self.secondTimeLb.text;
+    self.model.type = ToDoThingsTypeIsDone;
     [[GODDBHelper sharedHelper] god_saveOrUpdate:self.model];
     [self dismissAndRemove];
 }
 
-
-- (void)clickStartTime {
-    __weak typeof(self)weakSelf = self;
-    NSDate *minDate = [NSDate date];
-    NSDate *maxDate = [NSDate dateWithTimeIntervalSinceNow:10 * 365 * 24 * 3600];
-    [BRDatePickerView showDatePickerWithTitle:@"开始时间" dateType:BRDatePickerModeYMDHM defaultSelValue:@"" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
-        weakSelf.firstTimeLb.text = selectValue;
-    } cancelBlock:^{
-    }];
-    
-}
-
-- (void)clickEndTime {
-    __weak typeof(self)weakSelf = self;
-    NSDate *minDate = [NSDate date];
-    NSDate *maxDate = [NSDate dateWithTimeIntervalSinceNow:10 * 365 * 24 * 3600];
-    [BRDatePickerView showDatePickerWithTitle:@"开始时间" dateType:BRDatePickerModeYMDHM defaultSelValue:@"" minDate:minDate maxDate:maxDate isAutoSelect:YES themeColor:nil resultBlock:^(NSString *selectValue) {
-        weakSelf.secondTimeLb.text = selectValue;
-    } cancelBlock:^{
-    }];
-}
 
 - (UILabel *)notiLb {
     if (!_notiLb) {
@@ -276,16 +245,25 @@
     if (!_startTimeLb) {
         _startTimeLb = [[UILabel alloc] init];
         _startTimeLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-        _startTimeLb.text = @"开始时间";
+        _startTimeLb.text = @"预计开始时间";
     }
     return _startTimeLb;
+}
+
+- (UILabel *)realStartLb {
+    if (!_realStartLb) {
+        _realStartLb = [[UILabel alloc] init];
+        _realStartLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
+        _realStartLb.text = @"实际开始时间";
+    }
+    return _realStartLb;
 }
 
 - (UILabel *)endTimeLb {
     if (!_endTimeLb) {
         _endTimeLb = [[UILabel alloc] init];
         _endTimeLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-        _endTimeLb.text = @"完成时间";
+        _endTimeLb.text = @"预计完成时间";
     }
     return _endTimeLb;
 }
@@ -300,8 +278,6 @@
         _firstTimeLb.layer.borderWidth = 1.0f;
         _firstTimeLb.textAlignment = NSTextAlignmentCenter;
         _firstTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
-        _firstTimeLb.userInteractionEnabled = YES;
-        [_firstTimeLb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickStartTime)]];
     }
     return _firstTimeLb;
 }
@@ -316,8 +292,6 @@
         _secondTimeLb.layer.borderWidth = 1.0f;
         _secondTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
         _secondTimeLb.textAlignment = NSTextAlignmentCenter;
-        _secondTimeLb.userInteractionEnabled = YES;
-        [_secondTimeLb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickEndTime)]];
     }
     return _secondTimeLb;
 }
@@ -336,7 +310,9 @@
     if (!_certainBtn) {
         _certainBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_certainBtn addTarget:self action:@selector(clickCertainBtn) forControlEvents:UIControlEventTouchUpInside];
-        [_certainBtn setImage:[UIImage imageNamed:@"certain"] forState:UIControlStateNormal];
+        [_certainBtn setTitle:@"点击完成此事项" forState:UIControlStateNormal];
+        [_certainBtn setTitleColor:[UIColor colorWithRed:137 green:137 blue:137 alpha:1] forState:UIControlStateNormal];
+        _certainBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
         [_certainBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
     return _certainBtn;
@@ -348,6 +324,7 @@
         _titleTf.placeholder = @"新事项";
         _titleTf.textAlignment = NSTextAlignmentCenter;
         _titleTf.font = [UIFont systemFontOfSize:18];
+        _titleTf.userInteractionEnabled = NO;
     }
     return _titleTf;
 }
@@ -400,9 +377,22 @@
         _thridNotiLb.layer.borderWidth = 1.0f;
         _thridNotiLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
         _thridNotiLb.textAlignment = NSTextAlignmentCenter;
-        _thridNotiLb.userInteractionEnabled = YES;
-        [_thridNotiLb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickNotiBtn)]];
     }
     return _thridNotiLb;
 }
+
+- (UILabel *)realTimeLb {
+    if (!_realTimeLb) {
+        _realTimeLb = [[UILabel alloc] init];
+        _realTimeLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
+        _realTimeLb.textColor = [UIColor blackColor];
+        _realTimeLb.layer.cornerRadius = 4;
+        _realTimeLb.layer.masksToBounds = YES;
+        _realTimeLb.layer.borderWidth = 1.0f;
+        _realTimeLb.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:0.8].CGColor;
+        _realTimeLb.textAlignment = NSTextAlignmentCenter;
+    }
+    return _realTimeLb;
+}
+
 @end

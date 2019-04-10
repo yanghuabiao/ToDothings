@@ -76,8 +76,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ToDoMainModel *model = self.dataArr[indexPath.row];
-    model.isOpenCell = !model.isOpenCell;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    
 }
 
 - (UITableView *)tableView {

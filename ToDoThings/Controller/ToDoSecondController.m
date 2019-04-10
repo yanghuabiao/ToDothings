@@ -9,6 +9,8 @@
 #import "ToDoSecondController.h"
 #import "ToFirstDoListCell.h"
 #import "GODDBHelper.h"
+#import "ToDoShowDetailView.h"
+
 #import <Masonry.h>
 @interface ToDoSecondController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
@@ -81,8 +83,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ToDoMainModel *model = self.dataArr[indexPath.row];
-    model.isOpenCell = !model.isOpenCell;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    ToDoShowDetailView *showView = [[ToDoShowDetailView alloc] init];
+    [showView showWithModel:model];
 }
 
 

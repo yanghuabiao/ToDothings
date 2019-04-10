@@ -9,6 +9,7 @@
 #import "ToFirstDoListCell.h"
 #import <Masonry.h>
 #import "ToDoTool.h"
+#import "MODropAlertView.h"
 
 #define LineColor [UIColor colorWithRed:237 green:237 blue:237 alpha:1]
 
@@ -39,25 +40,28 @@
 }
 
 - (void)setupUI {
-    [self addSubview:self.titleLb];
-    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(30);
-    }];
     
     [self addSubview:self.imgView];
     [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.titleLb.mas_right).mas_equalTo(0);
+        make.right.mas_equalTo(0);
         make.centerY.mas_equalTo(0);
         make.width.height.mas_equalTo(15);
     }];
+    
+    [self addSubview:self.titleLb];
+    [self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(self.imgView.mas_left).mas_equalTo(-10);
+    }];
+    
+    
 }
 
 - (UILabel *)titleLb {
     if (!_titleLb) {
         _titleLb = [[UILabel alloc] init];
         _titleLb.font = [UIFont systemFontOfSize:13];
-        _titleLb.textColor = [UIColor grayColor];
+        _titleLb.textColor = [UIColor blackColor];
     }
     return _titleLb;
 }
@@ -74,7 +78,7 @@
 @end
 
 
-@interface ToFirstDoListCell ()
+@interface ToFirstDoListCell ()<MODropAlertViewDelegate>
 
 @property (nonatomic, strong) UILabel *titleLb;
 @property (nonatomic, strong) UILabel *contentLb;
@@ -131,25 +135,31 @@
             }
             [self.strtBtn setTitle:@"开始"];
             [self.strtBtn setImg:@"start"];
+            self.statTimeLb.text = [ToDoTool getStartTimeWithTime:model.startTime];
+            self.endTimeLb.text = model.endTime;
             self.strtBtn.userInteractionEnabled = YES;
             break;
         case ToDoThingsTypeIsDoing:
             self.editIv.hidden = YES;
             self.clockIV.image = [UIImage imageNamed:@"hasNoti"];
             self.statusLb.textColor = [UIColor whiteColor];
-            self.statusLb.text = @"已耗时:\n10:04:20";
+            self.statusLb.text = [NSString stringWithFormat:@"已耗时:\n%@", [ToDoTool dateTimeDifferenceWithStartTime:model.realStartTime endTime:[ToDoTool getCurrentTimestamp]]];
             [self.strtBtn setTitle:@"完成"];
             [self.strtBtn setImg:@"start"];
             self.strtBtn.userInteractionEnabled = YES;
+            self.statTimeLb.text = model.realStartTime;
+            self.endTimeLb.text = model.endTime;
             break;
         default:
             self.editIv.hidden = YES;
             self.clockIV.image = [UIImage imageNamed:@"noNoti"];
             self.statusLb.textColor = [UIColor whiteColor];
-            self.statusLb.text = @"总耗时:\n10:04:20";
+            self.statusLb.text = [NSString stringWithFormat:@"总耗时:\n%@", [ToDoTool dateTimeDifferenceWithStartTime:model.realStartTime endTime:model.realEndTime]];
             [self.strtBtn setTitle:@"已完成"];
             [self.strtBtn setImg:@"start"];
             self.strtBtn.userInteractionEnabled = NO;
+            self.statTimeLb.text = model.realStartTime;
+            self.endTimeLb.text = model.realEndTime;
             break;
     }
     
@@ -160,8 +170,6 @@
         self.delBtn.hidden = YES;
         self.strtBtn.hidden = YES;
     }
-    self.statTimeLb.text = [ToDoTool getStartTimeWithTime:model.startTime];
-    self.endTimeLb.text = model.endTime;
 }
 
 - (void)clickEdit {
@@ -177,8 +185,21 @@
 }
 
 - (void)clickDeleteBtn {
-    if ([self.delegate respondsToSelector:@selector(clickDeleteWithCell:model:)]) {
-        [self.delegate clickDeleteWithCell:self model:self.model];
+    
+    MODropAlertView *alertView = [[MODropAlertView alloc] initDropAlertWithTitle:@"删除事项？"
+                                                                    description:[NSString stringWithFormat:@"确认删除此事项《%@》吗？删除后无法恢复喔！", self.model.title]
+                                                                  okButtonTitle:@"删除"
+                                                              cancelButtonTitle:@"取消"];
+    alertView.delegate = self;
+    [alertView show];
+    
+}
+
+- (void)alertViewPressButton:(MODropAlertView *)alertView buttonType:(DropAlertButtonType)buttonType {
+    if (buttonType == DropAlertButtonOK) {
+        if ([self.delegate respondsToSelector:@selector(clickDeleteWithCell:model:)]) {
+            [self.delegate clickDeleteWithCell:self model:self.model];
+        }
     }
 }
 
@@ -279,7 +300,7 @@
     
     [self.bgv addSubview:self.delBtn];
     [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-10);
         make.top.mas_equalTo(self.lineView_fouth.mas_bottom);
         make.bottom.mas_equalTo(0);
         make.width.mas_equalTo(70);
