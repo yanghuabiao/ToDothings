@@ -29,6 +29,7 @@
 		4A2A01A2225C78D2008345A5 /* JnPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A01A0225C78D2008345A5 /* JnPasswordView.m */; };
 		4A2A01A9225C88FC008345A5 /* GODNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A01A8225C88FC008345A5 /* GODNormalTableViewCell.m */; };
 		752A96FFDFD72696B7F750B1 /* libPods-ToDoThings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52457529586FB586661E35DF /* libPods-ToDoThings.a */; };
+		75D91583225CCEB0003721F4 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D91581225CCEAF003721F4 /* UIColor+CustomColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		4A2A01A8225C88FC008345A5 /* GODNormalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GODNormalTableViewCell.m; sourceTree = "<group>"; };
 		52457529586FB586661E35DF /* libPods-ToDoThings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDoThings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		553348F04396B9D762486594 /* Pods-ToDoThings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoThings.debug.xcconfig"; path = "Target Support Files/Pods-ToDoThings/Pods-ToDoThings.debug.xcconfig"; sourceTree = "<group>"; };
+		75D91581225CCEAF003721F4 /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		75D91582225CCEB0003721F4 /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		9AD3CD320B878B7CCD67AE6C /* Pods-ToDoThings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoThings.release.xcconfig"; path = "Target Support Files/Pods-ToDoThings/Pods-ToDoThings.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +198,8 @@
 		37EEB91F225B71F8006C575A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				75D91582225CCEB0003721F4 /* UIColor+CustomColors.h */,
+				75D91581225CCEAF003721F4 /* UIColor+CustomColors.m */,
 				37EEB925225B7385006C575A /* GODDefine.h */,
 				37EEB92C225B8DA4006C575A /* ToDoTool.h */,
 				37EEB92D225B8DA4006C575A /* ToDoTool.m */,
@@ -480,6 +485,7 @@
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,
 				3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */,
 				37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */,
+				75D91583225CCEB0003721F4 /* UIColor+CustomColors.m in Sources */,
 				4A2A019E225C6E33008345A5 /* GODFaceIDTableViewCell.m in Sources */,
 				37EEB91D225B7082006C575A /* ToDoThridController.m in Sources */,
 			);

@@ -125,7 +125,7 @@
                 self.clockIV.image = [UIImage imageNamed:@"hasNoti"];
             }else {
                 self.statusLb.text = @"未开启通知";
-                self.statusLb.textColor = [UIColor colorWithRed:137 green:137 blue:137 alpha:1];
+                self.statusLb.textColor = [UIColor whiteColor];
                 
                 self.clockIV.image = [UIImage imageNamed:@"noNoti"];
             }
@@ -191,13 +191,13 @@
         make.right.mas_equalTo(-20);
     }];
     
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-    effectview.frame = self.bounds;
-    [self.bgv addSubview:effectview];
-    [effectview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+//    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+//    effectview.frame = self.bounds;
+//    [self.bgv addSubview:effectview];
+//    [effectview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(0);
+//    }];
     
     [self.bgv addSubview:self.lineView_first];
     [self.lineView_first mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -404,7 +404,7 @@
         _bgv.layer.masksToBounds =YES;
         _bgv.layer.borderColor = LineColor.CGColor;
         _bgv.layer.borderWidth = 1.0f;
-        _bgv.image = [self blur:[UIImage imageNamed:@"背景"]];
+        _bgv.image = [UIImage imageNamed:@"ZHLive_qulification_topViewbg"];
         
         _bgv.userInteractionEnabled = YES;
     }
