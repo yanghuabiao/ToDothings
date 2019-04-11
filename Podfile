@@ -10,4 +10,5 @@ pod 'MFHUDManager'
 pod 'QMUIKit',:inhibit_warnings => true
 pod 'AVOSCloud'
 pod 'AVOSCloudIM'
+pod 'JPush'
 end

@@ -85,7 +85,7 @@
 
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSDate *date=[formatter dateFromString:dateStr];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:date];
     return components;

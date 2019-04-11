@@ -104,9 +104,8 @@
     return _dataArr;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[GODSettingViewController new]];
-    [self presentViewController:navi animated:YES completion:nil];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    
+//}
 
 @end
