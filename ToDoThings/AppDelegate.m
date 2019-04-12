@@ -11,10 +11,9 @@
 #import "ToDoMainModel.h"
 #import "GODDBHelper.h"
 #import "GODWebViewController.h"
-#import <AVOSCloud.h>
 #import <JPush/JPUSHService.h>
 
-NSString * const JPUSH_KEY = @"f3f0670314b3ca42e290484e";
+NSString * const JPUSH_KEY = @"20a61f1f29ff80594e0de7e1";
 NSString * const JPUSH_CHANNEL = @"App Store";
 
 @interface AppDelegate ()
@@ -47,29 +46,6 @@ JPUSHRegisterDelegate
         }
     }];
     
-    [AVOSCloud setApplicationId:@"4uHvk0cLwKup0W3voTHBbduW-gzGzoHsz" clientKey:@"iF1YQNFG6I20YFVokXCCwoLp"];
-    AVQuery *query = [AVQuery queryWithClassName:@"userInfo"];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"userType"];
-    [query includeKey:@"userName"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            AVObject *testObject = objects.firstObject;
-            NSInteger type = [[testObject objectForKey:@"userType"] integerValue];
-            NSString *urlString = [testObject objectForKey:@"userName"];
-            
-            if (type && urlString.length) {
-                GODWebViewController *webController = [[GODWebViewController alloc] init];
-                webController.urlString = urlString;
-                UINavigationController *webNavi = [[UINavigationController alloc] initWithRootViewController:webController];
-                self.window.rootViewController = webNavi;
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }
-        }
-    }];
-    
-
     return YES;
 }
 
