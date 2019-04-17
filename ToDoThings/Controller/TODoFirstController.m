@@ -13,6 +13,7 @@
 #import "ToDoEdtitView.h"
 #import "GODDefine.h"
 #import "ToDoTool.h"
+#import "GODSettingViewController.h"
 
 @interface TODoFirstController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) ToDoEdtitView *editView;
 @property (nonatomic, strong) UIButton *writeBtn;
+@property (nonatomic, strong) UIButton *settingBtn;
 
 @end
 
@@ -64,6 +66,13 @@
         make.width.height.mas_equalTo(60);
         make.right.mas_equalTo(-20.0f);
         make.bottom.mas_equalTo(-(SafeAreaBottomHeight + 100.0f));
+    }];
+    
+    [self.view addSubview:self.settingBtn];
+    [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(60);
+        make.right.mas_equalTo(-20.0f);
+        make.bottom.mas_equalTo(-(SafeAreaBottomHeight + 30.0f));
     }];
 }
 
@@ -158,5 +167,25 @@
     }
     return _writeBtn;
 }
+-(UIButton *)settingBtn {
+    if (!_settingBtn) {
+        _settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _settingBtn.backgroundColor = [UIColor whiteColor];
+        _settingBtn.layer.cornerRadius = 30;
+        _settingBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+        _settingBtn.layer.shadowOffset = CGSizeMake(.0f, 1.0f);
+        _settingBtn.layer.shadowOpacity = .12f;
+        _settingBtn.layer.shadowRadius = 4.0f;
+        _settingBtn.tintColor = [UIColor blackColor];
+        [_settingBtn setImage:[UIImage imageNamed:@"addressBook_setting"] forState:UIControlStateNormal];
+        [_settingBtn addTarget:self action:@selector(clicksettingBtn) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _settingBtn;
+}
 
+- (void)clicksettingBtn {
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[GODSettingViewController new]];
+    [self presentViewController:navi animated:YES completion:nil];
+}
 @end

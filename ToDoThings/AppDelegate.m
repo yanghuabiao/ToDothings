@@ -11,10 +11,15 @@
 #import "ToDoMainModel.h"
 #import "GODDBHelper.h"
 #import "GODWebViewController.h"
-#import <AVOSCloud.h>
+#import <JPush/JPUSHService.h>
+
+NSString * const JPUSH_KEY = @"20a61f1f29ff80594e0de7e1";
+NSString * const JPUSH_CHANNEL = @"App Store";
+
 @interface AppDelegate ()
 <
-UNUserNotificationCenterDelegate
+UNUserNotificationCenterDelegate,
+JPUSHRegisterDelegate
 >
 @end
 
@@ -22,6 +27,15 @@ UNUserNotificationCenterDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    [JPUSHService setupWithOption:launchOptions appKey:JPUSH_KEY
+                          channel:JPUSH_CHANNEL
+                 apsForProduction:YES
+            advertisingIdentifier:nil];
+    
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert|UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -32,30 +46,11 @@ UNUserNotificationCenterDelegate
         }
     }];
     
-    [AVOSCloud setApplicationId:@"4uHvk0cLwKup0W3voTHBbduW-gzGzoHsz" clientKey:@"iF1YQNFG6I20YFVokXCCwoLp"];
-    AVQuery *query = [AVQuery queryWithClassName:@"userInfo"];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"userType"];
-    [query includeKey:@"userName"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            AVObject *testObject = objects.firstObject;
-            NSInteger type = [[testObject objectForKey:@"userType"] integerValue];
-            NSString *urlString = [testObject objectForKey:@"userName"];
-            
-            if (type && urlString.length) {
-                GODWebViewController *webController = [[GODWebViewController alloc] init];
-                webController.urlString = urlString;
-                UINavigationController *webNavi = [[UINavigationController alloc] initWithRootViewController:webController];
-                self.window.rootViewController = webNavi;
-                self.window.backgroundColor = [UIColor whiteColor];
-                [self.window makeKeyAndVisible];
-            }
-        }
-    }];
-    
-
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [JPUSHService registerDeviceToken:deviceToken];
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
@@ -90,6 +85,29 @@ UNUserNotificationCenterDelegate
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark- JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge);
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
 
 
 @end

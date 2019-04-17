@@ -1,14 +1,4 @@
 PODS:
-  - AVOSCloud (11.6.1)
-  - AVOSCloudIM (11.6.1):
-    - AVOSCloud (= 11.6.1)
-    - AVOSCloudIM/_ARC (= 11.6.1)
-    - AVOSCloudIM/_NOARC (= 11.6.1)
-  - AVOSCloudIM/_ARC (11.6.1):
-    - AVOSCloud (= 11.6.1)
-    - AVOSCloudIM/_NOARC (= 11.6.1)
-  - AVOSCloudIM/_NOARC (11.6.1):
-    - AVOSCloud (= 11.6.1)
   - BGFMDB (2.0.13):
     - BGFMDB/BG (= 2.0.13)
     - BGFMDB/FMDB (= 2.0.13)
@@ -16,6 +6,9 @@ PODS:
     - BGFMDB/FMDB
   - BGFMDB/FMDB (2.0.13)
   - BRPickerView (2.2.1)
+  - JCore (1.2.6)
+  - JPush (3.1.2):
+    - JCore (~> 1.2.6)
   - Masonry (1.1.0)
   - MFHUDManager (0.1.5)
   - QMUIKit (3.1.4):
@@ -287,10 +280,9 @@ PODS:
   - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
-  - AVOSCloud
-  - AVOSCloudIM
   - BGFMDB
   - BRPickerView
+  - JPush
   - Masonry
   - MFHUDManager
   - QMUIKit
@@ -298,25 +290,25 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AVOSCloud
-    - AVOSCloudIM
     - BGFMDB
     - BRPickerView
+    - JCore
+    - JPush
     - Masonry
     - MFHUDManager
     - QMUIKit
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
-  AVOSCloud: 75fe137e0d4eae392047824cea66c9b99a2ea574
-  AVOSCloudIM: cc2079356c197f69d85d3cf6e1c99c5a1b6c0430
   BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   BRPickerView: 0590a8c5de9bd98c6b4e4f117a3dff6de287d5b2
+  JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
+  JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MFHUDManager: 7b359671b0042d94cce27e94d3d3bca2a3f0f39e
   QMUIKit: 1bc386f20c68cf285484c933cf3ef3fea2a052f4
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 89ff80234a8a6f965e260f4a781a9d39b1929af4
+PODFILE CHECKSUM: 63ca7a5441c4425ffd8e5ac2067edf45c13ad581
 
 COCOAPODS: 1.6.1
