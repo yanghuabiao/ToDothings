@@ -11,6 +11,7 @@ PODS:
     - JCore (~> 1.2.6)
   - Masonry (1.1.0)
   - MFHUDManager (0.1.5)
+  - MOBFoundation (3.2.2)
   - QMUIKit (3.1.4):
     - QMUIKit/QMUIComponents (= 3.1.4)
     - QMUIKit/QMUICore (= 3.1.4)
@@ -277,6 +278,13 @@ PODS:
     - QMUIKit/QMUILog
   - QMUIKit/QMUIResources (3.1.4)
   - QMUIKit/QMUIWeakObjectContainer (3.1.4)
+  - ShareSDK3 (4.0.4):
+    - MOBFoundation
+    - ShareSDK3/ShareSDK (= 4.0.4)
+  - ShareSDK3/ShareSDK (4.0.4):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/WeChat (4.0.4):
+    - MOBFoundation
   - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
@@ -286,6 +294,8 @@ DEPENDENCIES:
   - Masonry
   - MFHUDManager
   - QMUIKit
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/WeChat
   - "UITextView+Placeholder"
 
 SPEC REPOS:
@@ -296,7 +306,9 @@ SPEC REPOS:
     - JPush
     - Masonry
     - MFHUDManager
+    - MOBFoundation
     - QMUIKit
+    - ShareSDK3
     - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
@@ -306,9 +318,11 @@ SPEC CHECKSUMS:
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MFHUDManager: 7b359671b0042d94cce27e94d3d3bca2a3f0f39e
+  MOBFoundation: b5ff4038ddb9a0f06b685b86408f905a10aa147c
   QMUIKit: 1bc386f20c68cf285484c933cf3ef3fea2a052f4
+  ShareSDK3: 75b57bab0cbe3119e281c7668eaad9d48adf3fde
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 63ca7a5441c4425ffd8e5ac2067edf45c13ad581
+PODFILE CHECKSUM: e95fff0c8fdac0a32dc1e0b89990269ed638de28
 
 COCOAPODS: 1.6.1

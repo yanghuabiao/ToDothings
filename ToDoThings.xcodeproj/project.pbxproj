@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370A0CE9226705F6002707D9 /* ToDoShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370A0CE8226705F6002707D9 /* ToDoShareView.m */; };
 		3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747AD19225C7A1700F4049D /* ToDoEdtitView.m */; };
 		37CB7420225DC1EA00144557 /* MODropAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB741E225DC1EA00144557 /* MODropAlertView.m */; };
 		37CB7421225DC1EA00144557 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB741F225DC1EA00144557 /* UIImage+ImageEffects.m */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		370A0CE7226705F6002707D9 /* ToDoShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoShareView.h; sourceTree = "<group>"; };
+		370A0CE8226705F6002707D9 /* ToDoShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoShareView.m; sourceTree = "<group>"; };
 		3747AD18225C7A1700F4049D /* ToDoEdtitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoEdtitView.h; sourceTree = "<group>"; };
 		3747AD19225C7A1700F4049D /* ToDoEdtitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoEdtitView.m; sourceTree = "<group>"; };
 		37CB741C225DC1EA00144557 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				37CB7426225DE2B300144557 /* ToDoDoneDetailView.m */,
 				37EEB926225B75BA006C575A /* ToFirstDoListCell.h */,
 				37EEB927225B75BA006C575A /* ToFirstDoListCell.m */,
+				370A0CE7226705F6002707D9 /* ToDoShareView.h */,
+				370A0CE8226705F6002707D9 /* ToDoShareView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_warnning.png",
 				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
+				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -501,6 +507,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_success.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_warnning.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -529,6 +536,7 @@
 				37EEB924225B7275006C575A /* UIView+ZDD.m in Sources */,
 				37EEB92B225B8BDE006C575A /* ToDoMainModel.m in Sources */,
 				3747AD1A225C7A1700F4049D /* ToDoEdtitView.m in Sources */,
+				370A0CE9226705F6002707D9 /* ToDoShareView.m in Sources */,
 				37EEB8E2225B6AC7006C575A /* AppDelegate.m in Sources */,
 				37CB7420225DC1EA00144557 /* MODropAlertView.m in Sources */,
 				37CB7424225DCBF900144557 /* ToDoShowDetailView.m in Sources */,
@@ -711,6 +719,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24V79B9824;
 				INFOPLIST_FILE = ToDoThings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -730,6 +739,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24V79B9824;
 				INFOPLIST_FILE = ToDoThings/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

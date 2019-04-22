@@ -9,4 +9,7 @@ pod 'UITextView+Placeholder'
 pod 'MFHUDManager'
 pod 'QMUIKit',:inhibit_warnings => true
 pod 'JPush'
+pod 'ShareSDK3'
+pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+
 end

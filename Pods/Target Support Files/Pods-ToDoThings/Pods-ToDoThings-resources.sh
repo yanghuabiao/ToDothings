@@ -102,6 +102,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png"
   install_resource "${PODS_ROOT}/MFHUDManager/Image/notice_type_warnning.png"
   install_resource "${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle"
+  install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle"
@@ -109,6 +110,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png"
   install_resource "${PODS_ROOT}/MFHUDManager/Image/notice_type_warnning.png"
   install_resource "${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle"
+  install_resource "${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

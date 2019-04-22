@@ -13,6 +13,9 @@
 #import "GODSettingViewController.h"
 #import "ToDoDoneDetailView.h"
 
+#import "ToDoShareView.h"
+
+
 @interface ToDoThridController ()<UITableViewDelegate, UITableViewDataSource, ToFirstDoListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -77,7 +80,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ToDoMainModel *model = self.dataArr[indexPath.row];
-    ToDoDoneDetailView *showView = [[ToDoDoneDetailView alloc] init];
+//    ToDoDoneDetailView *showView = [[ToDoDoneDetailView alloc] init];
+//    [showView showWithModel:model];
+
+    ToDoShareView *showView = [[ToDoShareView alloc] init];
     [showView showWithModel:model];
     
 }

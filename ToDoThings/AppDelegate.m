@@ -12,6 +12,7 @@
 #import "GODDBHelper.h"
 #import "GODWebViewController.h"
 #import <JPush/JPUSHService.h>
+#import "WXApi.h"
 
 NSString * const JPUSH_KEY = @"20a61f1f29ff80594e0de7e1";
 NSString * const JPUSH_CHANNEL = @"App Store";
@@ -19,7 +20,8 @@ NSString * const JPUSH_CHANNEL = @"App Store";
 @interface AppDelegate ()
 <
 UNUserNotificationCenterDelegate,
-JPUSHRegisterDelegate
+JPUSHRegisterDelegate,
+WXApiDelegate
 >
 @end
 
@@ -27,6 +29,9 @@ JPUSHRegisterDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [WXApi registerApp:@"wxcd19c33f6f617ab8"];
+
     
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
     entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
@@ -86,6 +91,18 @@ JPUSHRegisterDelegate
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
 #pragma mark- JPUSHRegisterDelegate
 
 // iOS 10 Support
@@ -108,6 +125,14 @@ JPUSHRegisterDelegate
     completionHandler();  // 系统要求执行这个方法
 }
 
+-(void) onReq:(BaseReq*)reqonReq {
+    
+    
+}
 
+-(void) onResp:(BaseResp*)resp {
+    
+    
+}
 
 @end
